@@ -3,7 +3,6 @@
 // let seconds = 0;
 // let intervalId;
 // let running = false;
-
 // function updateDisplay() {
 //     const hrs = hours < 10 ? `0${hours}` : hours;
 //     const mins = minutes < 10 ? `0${minutes}` : minutes;
@@ -11,7 +10,6 @@
 //     console.clear(); // Clears the console to show the latest time
 //     console.log(`${hrs}:${mins}:${secs}`);
 // }
-
 // function startStopwatch() {
 //     if (!running) {
 //         running = false;
@@ -29,12 +27,10 @@
 //         }, 1000);
 //     }
 // }
-
 // function stopStopwatch1() {
 //     clearInterval(intervalId);
 //     running = false;
 // }
-
 // function resetStopwatch() {
 //     clearInterval(intervalId);
 //     running = false;
@@ -48,62 +44,6 @@
 // startStopwatch(); // to start
 // stopStopwatch1(); // to stop
 // resetStopwatch(); // to reset
-
-
-
-// // var hours=0;
-// // var minutes=0;
-// // var seconds=0;
-// // var intervalId;
-// // var running = false;
-
-// // function updateDisplay(){
-// //    const hrs=hours<10 ? 0${hours} : hours;
-// //    const mins=minutes<10 ? 0${minutes} : minutes;
-// //    const secs=seconds<10 ? 0${seconds} :seconds;
-// //    console.clear();
-// //    console.log(${hrs}:${mins}:${secs}) ; 
-// // }
-
-// // function startStopwatch(){
-// //     if(!running){
-// //         running=true;
-// //       intervalId=setInterval(()=>{
-// //       seconds++;
-// //       if(seconds===60){
-// //         seconds=0;
-// //         minutes++;
-// //         if(minutes===60){
-// //             minutes=0;
-// //             hours++;
-// //         }
-// //       }
-// //       updateDisplay();      
-// //       },1000)
-// //     }
-// // }
-// //       function stopStopwatch(){
-// //         clearInterval(intervalId);
-// //         running=false;
-// //       }
-// //       function resetStopwatch(){
-// //             clearInterval(intervalId)
-// //                 running=false;
-// //                 hours=0;
-// //                 minutes=0;
-// //                 seconds=0;
-// //                 updateDisplay();
-            
-// //       }
-
-
-// //  startStopwatch();
-// //  stopStopwatch();
-// //  resetStopwatch();
-
-
-
-
 
 const startStopwatch = () => {
     let starttime = new Date().getTime();
