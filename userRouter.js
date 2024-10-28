@@ -1,0 +1,14 @@
+const routes  = require("express").Router();
+const {
+  createUser,
+  getAllUser,
+  updateUser
+}=require("../controlers/userControler");
+
+const {createValidator}=require("../validations/userValidator")
+  
+routes.get("/get-all-users", getAllUser);
+routes.get("/create-user",createValidator,createUser);
+routes.get("/update",updateUser);
+
+module.exports=routes;
