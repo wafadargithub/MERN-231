@@ -8,7 +8,7 @@ const {
 const {createValidator}=require("../validations/userValidator")
   
 routes.get("/get-all-users", getAllUser);
-routes.get("/create-user",createValidator,createUser);
+routes.post("/create-user",createValidator,createUser);
 routes.get("/update",updateUser);
 
 module.exports=routes;
