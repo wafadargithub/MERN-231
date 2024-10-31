@@ -117,24 +117,95 @@
 // }) 
 
 
-const express=require("express");
-const bodyParser=require('body-parser')
-const userRouter=require("./routes/userRouter");
-const authRouter=require("./routes/authRouter");
-const setRouter=require("./routes/setRouter")
+// const express=require("express");
+// const bodyParser=require('body-parser')
+// const userRouter=require("./routes/userRouter");
+// const authRouter=require("./routes/authRouter");
+// const setRouter=require("./routes/setRouter")
+// const  {db} =require("./models/index")
 
-const port=4000;
-const server=express();
+// const port=4000;
+// const server=express();
 
-// create application/x-www-form-urlencoded parser
-server.use(bodyParser.urlencoded({ extended: true }));
+// // create application/x-www-form-urlencoded parser
+// server.use(bodyParser.urlencoded({ extended: true }));
 
+// server.use(bodyParser.json());
+
+// server.use("/user",userRouter);
+// server.use("/auth",authRouter);
+// server.use("/users",setRouter)
+
+// server.use((req,res,next)=>{
+//     return res.send({
+//         status:400,
+//         error:"request not found",
+//     });
+// });
+ 
+// db.connection
+// .async({alter:true}).then(()=>{
+//     server.listen(port,()=>{
+//         console.log(`server listing on port ${port}`)
+//     })
+// })
+// .catch((error)=>{
+//     console.log(error);
+//     console.log("enable to connection to database")
+// })
+    
+
+ 
+
+
+//importted express package
+const express = require("express");
+const bodyParser=require("body-parser");
+const morgan =require('morgan');
+const {db} =require("./models/index")
+// const connection = require("./dbConnection");
+
+//importing routes
+const userRouter= require("./routes/userRouter")
+const authRouter= require("./routes/authRouter")
+
+//added port
+const port = 4000;
+
+//creating server 
+const server = express();//it creates application
+
+server.use(morgan("dev"));
+
+server.use(bodyParser.urlencoded({extended:true})); // extended: true precises that the req.body object will contain values of any type instead of just strings.
+
+// parse application/json
 server.use(bodyParser.json());
 
-server.use("/user",userRouter);
+//adding routes path
+server.use("/user",userRouter);    //user is base path and exact path will be get through userRouter
 server.use("/auth",authRouter);
-server.use("/users",setRouter)
 
+//in case of wrong route path
+server.use((req,res,next)=>{
+    res.send({
+        status : 404,
+        error:"error"
+    });
+    next(createError(404));
+});
+
+//alter : true enables you to add new column and it doesnt let the data to be lost
+// if data is uploading just update data dont delete it 
+db.connection
+.sync({alter : true})
+.then(()=>{
+    //Started server
 server.listen(port,()=>{
-    console.log(`server listing on port ${port}`)
+    console.log(` app listening on port ${port}`);
+});
 })
+.catch((error)=>{
+    console.log(error);
+    console.log("unable to connect to database");
+});
